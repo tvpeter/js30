@@ -1,4 +1,4 @@
-## A 30-days javascript challenge
+## A 30-day javascript challenge
 
 *many thanks to Wes Bos*
 
