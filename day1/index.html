@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KEY PLAYING</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
+    <div class="keys">
+        <div data-key="84" class="key">
+            <kbd>T</kbd>
+            <span class="sound">openhat</span>
+        </div>
+        <div data-key="89" class="key">
+                <kbd>Y</kbd>
+                <span class="sound">ride</span>
+        </div>
+        <div data-key="79" class="key">
+            <kbd>O</kbd>
+            <span class="sound">tyo</span>
+        </div>
+        <div data-key="78" class="key">
+                <kbd>N</kbd>
+                <span class="sound">num</span>
+            </div>
+        
+            <div data-key="85" class="key">
+                    <kbd>U</kbd>
+                    <span class="sound">snare</span>
+            </div>
+            
+        <div data-key="77" class="key">
+                <kbd>M</kbd>
+                <span class="sound">mm</span>
+        </div>
+            <br>
+        <div data-key="80" class="key">
+            <kbd>P</kbd>
+            <span class="sound">clap</span>
+        </div>
+        <div data-key="69" class="key">
+                <kbd>E</kbd>
+                <span class="sound">kick</span>
+        </div>
+        <div data-key="73" class="key">
+                <kbd>I</kbd>
+                <span class="sound">hibat</span>
+        </div>
+        
+            <div data-key="86" class="key">
+                    <kbd>V</kbd>
+                    <span class="sound">hibat</span>
+            </div>
+        <div data-key="82" class="key">
+                <kbd>R</kbd>
+                <span class="sound">hibat</span>
+        </div>
+        <div data-key="72" class="key">
+                <kbd>H</kbd>
+                <span class="sound">hibat</span>
+        </div>
+        <br>
+        
+         <div data-key="71" class="key">
+                <kbd>G</kbd>
+                <span class="sound">hibat</span>
+        </div>
+        <div data-key="65" class="key">
+                <kbd>A</kbd>
+                <span class="sound">hibat</span>
+        </div>
+
+    </div>
+
+    <audio data-key="84" src="sounds/clickon.wav"></audio>
+    <audio data-key="89" src="sounds/switch.wav"></audio>
+    <audio data-key="79" src="sounds/btnoff.wav"></audio>
+    <audio data-key="78" src="sounds/switch.wav"></audio>
+    <audio data-key="85" src="sounds/wn.wav"></audio>
+    <audio data-key="77" src="sounds/toggle.wav"></audio>
+    <audio data-key="80" src="sounds/btnpush.wav"></audio>
+    <audio data-key="69" src="sounds/btnpush.wav"></audio>
+    <audio data-key="73" src="sounds/btn.wav"></audio>
+    <audio data-key="86" src="sounds/switch.wav"></audio>
+    <audio data-key="82" src="sounds/toggle.wav"></audio>
+    <audio data-key="72" src="sounds/btnpush.wav"></audio>
+    <audio data-key="71" src="sounds/btn.wav"></audio>
+    <audio data-key="65" src="sounds/btn.wav"></audio>
+
+    <script>
+     
+        function playSound(e)
+        {
+        
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        
+            //stops the fn from running
+            if(!audio) return; 
+
+            //rewind to start  
+            audio.currentTime = 0;
+            audio.play(); 
+
+            function removeTransition(e){
+                if(e.propertyName !== 'transform') return;
+                this.classList.remove('playing');
+            }
+
+            key.classList.add('playing');
+
+            const keys = document.querySelectorAll('.key');
+
+            keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+        
+        }
+        window.addEventListener("keydown", playSound);
+        
+    </script>
+    
+</body>
+</html>
